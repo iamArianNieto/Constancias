@@ -1,0 +1,51 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+*,
+*:before,
+*:after {
+   /* box-sizing: border-box;*/
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+    input[type="radio"] + label:before {
+        content: "";
+        /* create custom radiobutton appearance */       
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        padding: 2px;
+        margin-right: 3px;
+        /* background-color only for content */
+        background-clip: content-box;
+        border: 2px solid #bbbbbb;
+        background-color: #e7e6e7;
+        border-radius: 50%;
+    }
+
+    /* appearance for checked radiobutton */
+    input[type="radio"]:checked + label:before {
+        background-color: rgb(0,229,174);
+        width: 18px;
+        height: 18px;
+        
+    }
+
+/* optional styles, I'm using this for centering radiobuttons */
+label {
+    display: flex;
+    align-items: center;
+   
+    font-family: 'Roboto';
+    font-size: calc(.4em + .4vw);
+}
+
+input[type=radio]:checked ~ label {
+    font-weight: bold;
+    font-size: calc(.4em + .4vw);
+    padding-top:-10px;
+}
+
+
