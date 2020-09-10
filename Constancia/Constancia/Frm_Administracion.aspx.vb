@@ -5,7 +5,7 @@
         If Not IsPostBack Then
 
             Response.AppendHeader("Cache-Control", "no-store")
-            Txt_AuxUsuario.Text = Session("Nombre")
+            Txt_AuxUsuario.Text = Session("Usuario")
             Txt_AuxNomUsuario.Text = Session("Nombre")
             Txt_AuxPrivilegio.Text = Session("Privilegio")
 
@@ -26,7 +26,7 @@
     End Sub
 
     Private Sub guardar()
-        Dim res As String = Txt_GenerarCadena.Text
+        Dim res As String = Txt_GenerarCadena.Text.ToUpper()
         Dim auxcon As Integer = 1
         Dim delimitadores As String = "¥"
         Dim vectoraux = res.Split(delimitadores)
@@ -43,7 +43,6 @@
                 auxcon = auxcon + 1
             End If
         Next
-        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "Modal", "Modal()", True)
 
 
     End Sub
@@ -51,6 +50,8 @@
 
     Protected Sub Btn_Generarcadena_Click(sender As Object, e As EventArgs) Handles Btn_Generarcadena.Click
         guardar()
+        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "Modal", "Modal()", True)
+
     End Sub
 
     Private Function AgregarConferencia()
@@ -75,8 +76,10 @@
         Dim caracteres As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
         Dim res As StringBuilder = New StringBuilder()
         Dim md As Random = New Random()
-        Do While 0 < longitud
+        Dim i As Integer = 0
+        Do While i < longitud
             res.Append(caracteres(md.Next(caracteres.Length)))
+            i = i + 1
         Loop
 
         Return res.ToString()

@@ -5,7 +5,7 @@
         Conexion_Ponencia.cmd.Connection = Conexion_Ponencia.conn
         Conexion_Ponencia.sql = ""
         Conexion_Ponencia.sql = "insert into Conferencia(Id_conferencia,Nombre_conferencia,Nombre_ponente,Fecha_conferencia,Horario,Contraseña,Numero_cuenta) "
-        Conexion_Ponencia.sql = Conexion_Ponencia.sql & "values('" & conferencia & "','" & Nombre_conferencia & "','" & Nombre_ponente & "','" & fecha & "','" & hora & "','" & usuario & "','') "
+        Conexion_Ponencia.sql = Conexion_Ponencia.sql & "values('" & conferencia & "','" & Nombre_conferencia & "','" & Nombre_ponente & "','" & fecha & "','" & hora & "','" & Contrasena & "','" & usuario & "') "
         Conexion_Ponencia.cmd.CommandText = Conexion_Ponencia.sql
         Try
             Conexion_Ponencia.cmd.ExecuteNonQuery()
@@ -25,7 +25,7 @@
         Conexion_Ponencia.cmd.CommandType = CommandType.Text
         Conexion_Ponencia.cmd.Connection = Conexion_Ponencia.conn
         Conexion_Ponencia.sql = ""
-        Conexion_Ponencia.sql = "select top 1 Id_conferencia from Conferencia order by folio desc"
+        Conexion_Ponencia.sql = "select top 1 Id_conferencia from Conferencia order by Id_conferencia desc"
         Conexion_Ponencia.cmd.CommandText = Conexion_Ponencia.sql
         Try
             Conexion_Ponencia.dr = Conexion_Ponencia.cmd.ExecuteReader()

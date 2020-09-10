@@ -69,7 +69,7 @@
 
                         resultado = resultado + "<div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>"
                         resultado = resultado + "<h6 id='Lblpregunta" + contador + "' style='margin-left:-78%;'>Pregunta " + contador + "</h6>"
-                        resultado = resultado + "<input id='Pregunta" + contador + "' required type='text' style='width:100%;'/>"
+                        resultado = resultado + "<input id='Pregunta" + contador + "' required type='text' style='width:100%;text-transform:uppercase'/>"
                         resultado = resultado + "</div>"
                         resultado = resultado + "<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2'>"
                         resultado = resultado + "<input id='Btnpregunta" + contador + "'  class='botonmas' type='button' value='+' style='margin-top:30px;' onclick='nuevo();'/>"
@@ -83,7 +83,7 @@
                  
                     resultado = resultado + "<div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>"
                     resultado = resultado + "<h6 id='Lblpregunta" + contador + "' style='margin-left:-78%;'>Pregunta " + contador + "</h6>"
-                    resultado = resultado + "<input id='Pregunta" + contador + "' required type='text' style='width:100%;'/>"
+                    resultado = resultado + "<input id='Pregunta" + contador + "' required type='text' style='width:100%;text-transform:uppercase'/>"
                 
                
                     resultado = resultado + "</div>"
@@ -117,6 +117,7 @@
            // alert(resultado);
             var btn = document.getElementById('<%=Btn_Generarcadena.ClientID%>');
             btn.click();
+            Modal();                              
         }
 
 
@@ -164,10 +165,10 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                     <ContentTemplate>
-                        <asp:TextBox ID="Txt_Ponente" placeholder="Nombre del Ponente" runat="server" Style="width:100%"></asp:TextBox>
+                        <asp:TextBox ID="Txt_Ponente" placeholder="Nombre del Ponente" runat="server" Style="width:100%; text-transform:uppercase"></asp:TextBox>
                         <br />
                         <br />
-                        <asp:TextBox ID="Txt_Conferencia" placeholder="Nombre de la conferencia" runat="server" Style="width:100%"></asp:TextBox>
+                        <asp:TextBox ID="Txt_Conferencia" placeholder="Nombre de la conferencia" runat="server" Style="width:100%;text-transform:uppercase"></asp:TextBox>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
@@ -202,7 +203,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                         <h6 id="Lblpregunta" style="margin-left:-78%;">Pregunta 1</h6>
-                        <input id="Pregunta" type="text" style="width:100%;" required/>
+                        <input id="Pregunta" type="text" style="width:100%;text-transform:uppercase" required/>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                         <input id="Btnpregunta" class="botonmas" type="button" value="+"  style="margin-top:30px;" onclick='nuevo();' />
@@ -227,7 +228,7 @@
             <ContentTemplate>
                <asp:Button ID="Btn_Generarcadena" runat="server" Text="Button" />
 
-                <asp:TextBox ID="Txt_GenerarCadena" runat="server" AutoPostBack="true"></asp:TextBox>
+                <asp:TextBox ID="Txt_GenerarCadena" runat="server" AutoPostBack="true" Style="text-transform:uppercase"></asp:TextBox>
                 <asp:TextBox ID="Txt_AuxUsuario" runat="server"></asp:TextBox>
                 <asp:TextBox ID="Txt_AuxNomUsuario" runat="server"></asp:TextBox>
                 <asp:TextBox ID="Txt_AuxPrivilegio" runat="server"></asp:TextBox>
