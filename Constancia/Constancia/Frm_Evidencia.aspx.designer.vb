@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Frm_Evidencia
-
+    
     '''<summary>
     '''Control ScriptManager1.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''Control Label2.
     '''</summary>
@@ -30,34 +30,43 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
-    '''Control ImageButton1.
+    '''Control UpdatePanel5.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
-
+    Protected WithEvents UpdatePanel5 As Global.System.Web.UI.UpdatePanel
+    
     '''<summary>
-    '''Control ImageButton2.
+    '''Control ImBtn_Fotografia.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ImageButton2 As Global.System.Web.UI.WebControls.ImageButton
-
+    Protected WithEvents ImBtn_Fotografia As Global.System.Web.UI.WebControls.ImageButton
+    
     '''<summary>
-    '''Control GridView1.
+    '''Control UpdatePanel6.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-
+    Protected WithEvents UpdatePanel6 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''Control ImBtn_Cuestionario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ImBtn_Cuestionario As Global.System.Web.UI.WebControls.ImageButton
+    
     '''<summary>
     '''Control UpdatePanel1.
     '''</summary>
@@ -66,16 +75,16 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
+    
     '''<summary>
-    '''Control RadioButton1.
+    '''Control Rd_Fotografias.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RadioButton1 As Global.System.Web.UI.WebControls.RadioButton
-
+    Protected WithEvents Rd_Fotografias As Global.System.Web.UI.WebControls.RadioButton
+    
     '''<summary>
     '''Control UpdatePanel2.
     '''</summary>
@@ -84,31 +93,103 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
-
+    
     '''<summary>
-    '''Control RadioButton2.
+    '''Control Rd_Cuestionario.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RadioButton2 As Global.System.Web.UI.WebControls.RadioButton
-
+    Protected WithEvents Rd_Cuestionario As Global.System.Web.UI.WebControls.RadioButton
+    
     '''<summary>
-    '''Control Button2.
+    '''Control UpdatePanel4.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Button2 As Global.System.Web.UI.WebControls.Button
-
+    Protected WithEvents UpdatePanel4 As Global.System.Web.UI.UpdatePanel
+    
     '''<summary>
-    '''Control FileUpload1.
+    '''Control FileUp.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents FileUp As Global.System.Web.UI.WebControls.FileUpload
+    
+    '''<summary>
+    '''Control UpdatePanel3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents UpdatePanel3 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''Control Btn_Siguiente.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btn_Siguiente As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control UpdatePanel7.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents UpdatePanel7 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''Control Txt_GenerarCadena.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Txt_GenerarCadena As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Txt_idconferencia.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Txt_idconferencia As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Txt_auxusuario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Txt_auxusuario As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control UpdatePanel8.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents UpdatePanel8 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''Control lblValidacion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblValidacion As Global.System.Web.UI.WebControls.Label
 End Class

@@ -9,6 +9,22 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script>
+        function ModalDatos() {
+            $("#myModalDatInc").modal('show');
+        }
+
+        function cerrarDatos() {
+            $("#myModalDatInc").modal('hide');
+        }
+
+        function MuestraRes(valor) {
+            document.getElementById('temporal').innerHTML = valor;
+
+        }
+
+    </script>
+
 <div class="formBox" >
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
@@ -32,25 +48,35 @@
             <div class="row">
                 
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/img/fotografias.png" CssClass="imagen" />
-                </div>
+                    <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                        <ContentTemplate>
+                             <asp:ImageButton ID="ImBtn_Fotografia" runat="server" ImageUrl="~/img/fotografias.png" CssClass="imagen" style="width:100%; height:auto;"/>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                 </div>
                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                      <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/img/cuestionario.png"  CssClass="imagen"/>
+                     <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                         <ContentTemplate>
+                             <asp:ImageButton ID="ImBtn_Cuestionario" runat="server" ImageUrl="~/img/cuestionario.png"  CssClass="imagen" style="width:100%; height:auto;"/>
+                         </ContentTemplate>
+                     </asp:UpdatePanel>
                 </div>
                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                      <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                     <div id="temporal"></div>
+                     
+
                  </div>
               
             </div>
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server"><ContentTemplate>
-                        <asp:RadioButton ID="RadioButton1" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Fotografías" />      
+                        <asp:RadioButton ID="Rd_Fotografias" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Fotografías" />      
                     </ContentTemplate></asp:UpdatePanel>
                 </div>
                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                       <asp:UpdatePanel ID="UpdatePanel2" runat="server"><ContentTemplate>
-                            <asp:RadioButton ID="RadioButton2" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Cuestionario"/>
+                            <asp:RadioButton ID="Rd_Cuestionario" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Cuestionario"/>
                         </ContentTemplate></asp:UpdatePanel>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
@@ -58,7 +84,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:left;">
-                    <input type="button" value="Subir Fotografías" onclick="showBrowseDialog()" />
+                    <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                        <ContentTemplate>
+                            <asp:FileUpload ID="FileUp" runat="server" AllowMultiple="true" />
+  
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 </div>
@@ -67,32 +98,57 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >                   
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="text-align:right;">
-                    <asp:Button ID="Button2" runat="server" Text="Siguiente" CssClass="btn_siguiente" />
+                    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                        <ContentTemplate>
+                            <asp:Button ID="Btn_Siguiente" runat="server" Text="Siguiente" CssClass="btn_siguiente" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
             <br /> 
-            <asp:FileUpload ID="FileUpload1" Style="display: none" runat="server" onchange="upload()" />
             </div>
          </div>
      </div>
 </div>
    
+    <div>
+        <asp:UpdatePanel ID="UpdatePanel7" runat="server">
+            <ContentTemplate>
+                <asp:TextBox ID="Txt_GenerarCadena" runat="server" Style="text-transform:uppercase"></asp:TextBox>
+                <asp:TextBox ID="Txt_idconferencia" runat="server"></asp:TextBox>
+                <asp:TextBox ID="Txt_auxusuario" runat="server"></asp:TextBox>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
  
+    <div class="modal fade" id="myModalDatInc" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">           
 
+          <h3  class="modal-title" >¡ Error !</h3>
+            <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+          
+        </div>
+        <div class="modal-body">
+            <asp:UpdatePanel ID="UpdatePanel8" runat="server">
+                <ContentTemplate>
+
+                  <asp:Label ID="lblValidacion" runat="server" Text="" Visible="false" Style="color:#000000"></asp:Label>     
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        
+        </div>
+        <div class="modal-footer" style="margin-left: auto;margin-right: auto;">
+         <center>
+                    <a class="btn_siguiente" href="#" style="width:300px; height:60px; padding:7px;" onclick="cerrarDatos();" role="button">Aceptar</a>
+            </center>
+        </div>
+      </div>
+    </div>
+  </div>    
    
     
      
 
-
-<script type="text/javascript" language="javascript">
-    function showBrowseDialog() {
-        var fileuploadctrl = document.getElementById('<%= FileUpload1.ClientID %>');
-        fileuploadctrl.click();
-    }
-
-    function upload() {
-      <%--  var btn = document.getElementById('<%= hideButton.ClientID %>');--%>
-        btn.click();
-    }
-</script>
 </asp:Content>

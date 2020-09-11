@@ -22,6 +22,7 @@
                 If resultado = 1 Then
                     'Informacion de la conferencia
                     Dim Datoconferencia(4) As String
+                    Session("Usuario") = Txt_Usuario.Text
                     Datoconferencia = Contrasena.TraerDatosConferencia(pass)
                     Session("Conferencia") = Datoconferencia(0)
                     Session("Ponente") = Datoconferencia(1)

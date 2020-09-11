@@ -1,4 +1,6 @@
-﻿Public Class Cat_Conferencia
+﻿Imports System.Data.SqlClient
+
+Public Class Cat_Conferencia
     Public Sub Insertar(ByRef conferencia As String, ByRef Nombre_conferencia As String, ByRef Nombre_ponente As String, ByRef fecha As String, ByRef hora As String, ByRef Contrasena As String, ByRef usuario As String)
         Conexion_Ponencia.conectarse()
         Conexion_Ponencia.cmd.CommandType = CommandType.Text
@@ -78,4 +80,22 @@
         End Try
         Return Existe
     End Function
+
+    Public Function Traer_Conferencia(ByRef id As String)
+        Conexion_Ponencia.conectarse()
+        Conexion_Ponencia.sql = ""
+        'Conex.sql = "SELECT id_municipio,desc_municipio  FROM CAT_MUNICIPIO order by desc_municipio asc"
+        Conexion_Ponencia.sql = "select Pregunta from Cuestionario where Id_conferencia = '" & id & "' order by Id_pregunta asc"
+        Dim da As New SqlDataAdapter(Conexion_Ponencia.sql, Conexion_Ponencia.conn)
+        Dim dt As New DataTable
+        Try
+            da.Fill(dt)
+        Catch ex As Exception
+            ex.ToString()
+            Conexion_Ponencia.conn.Close()
+        End Try
+
+        Return dt
+    End Function
+
 End Class
