@@ -6,8 +6,10 @@ Public Class Frm_Evidencia
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             inicio()
-            Txt_idconferencia.Text = Session("Id_Conferencia")
+            'Txt_idconferencia.Text = Session("Id_Conferencia") 1001
+            Txt_idconferencia.Text = "1001"
             Txt_auxusuario.Text = Session("Usuario")
+            Panel.HorizontalAlign = HorizontalAlign.Left
 
         End If
     End Sub
@@ -35,6 +37,7 @@ Public Class Frm_Evidencia
             ImBtn_Fotografia.ImageUrl = "img/fotografias_desahabilitado.png"
             ImBtn_Cuestionario.ImageUrl = "img/cuestionario.png"
             FileUp.Visible = False
+            cargar_preguntas()
         Else
 
         End If
@@ -170,72 +173,90 @@ Public Class Frm_Evidencia
         dt = conferencia.Traer_Conferencia(Txt_idconferencia.Text)
         Dim contador As Integer = 1
         Dim resultado As String = ""
-
         For Each row As DataRow In dt.Rows
-            resultado = resultado & "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>"
-            resultado = resultado & "<h6 id='Lblpregunta" & contador & "' style='width:100%;'>" & row("Pregunta") & "</h6>"
-            resultado = resultado + "<input id='Pregunta" & contador & "' required type='text' style='width:100%;text-transform:uppercase'/>"
-            resultado = resultado & "</div>"
+            Dim label As New Label
+            label.ID = "lbl_pregunta" & contador
+            label.Text = contador & "." & row("Pregunta")
+            label.Font.Bold = True
+            label.Width = Unit.Percentage(100)
+            Panel.Controls.Add(label)
+            Dim txt_pregunta As New TextBox
+            txt_pregunta.Width = Unit.Percentage(100)
+            txt_pregunta.ID = "txt_pregunta" & contador
+            Panel.Controls.Add(txt_pregunta)
             contador = contador + 1
         Next
-
-
-        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "MuestraRes", "MuestraRes('" & resultado & "')", True)
-
-
-
     End Sub
 
+    Private Sub guardar()
+        Dim respuestas As New Cat_Respuestas
+        Dim auxcon As Integer = 1
+        Dim c As Control
+        For Each ctrl As Control In Panel.Controls
+            'Comparamos el nombre del control con el nombre que buscamos
+            'Hace la comparación en mayusculas.
+            If ctrl.ID = "txt_pregunta1" Then
+                'Ha sido encontrado. Asignamos el control encontrado y salimos del for
+                c = ctrl
+                Exit For
+            End If
+
+        Next
+        'MsgBox(c.ToString())
+
+
+        'respuestas.Insertar(Txt_idconferencia.Text, auxcon, texto.Text)
+        'auxcon = auxcon + 1
+
+    End Sub
 
     Private Function validar()
         Dim resultado As Boolean = False
 
-        If ValidarArchivos() = False Then
-            lblValidacion.Text = "No se agregaron archivos"
-            resultado = False
-        ElseIf Txt_GenerarCadena.Text.Length = 0 Then
-            lblValidacion.Text = "Ingrese las respuestas"
-            resultado = False
-        Else
-            resultado = True
-        End If
+
+        resultado = True
 
 
-        Return resultado
+
+            Return resultado
     End Function
 
-    Private Sub guardar()
-        Dim respuestas As New Cat_Respuestas
-        Dim res As String = Txt_GenerarCadena.Text.ToUpper()
-        Dim auxcon As Integer = 1
-        Dim delimitadores As String = "¥"
-        Dim vectoraux = res.Split(delimitadores)
-
-        For Each item As String In vectoraux
-            If item <> "" Then
-                'MsgBox(auxcon & ". " & item)
-                'agregar cuestionario
-                respuestas.Insertar(Txt_idconferencia.Text, auxcon, item)
-                auxcon = auxcon + 1
-            End If
-        Next
-
-
-    End Sub
 
 
 
-    Protected Sub Btn_Siguiente_Click(sender As Object, e As EventArgs) Handles Btn_Siguiente.Click
-        If validar() = True Then
+    Private Sub subir_archivo()
+        If ValidarArchivos() = True Then
             Dim res As String = CopiarArchivo(Convert.ToUInt32(Txt_idconferencia.Text)).ToString()
             If res = "ERROR" Then
                 lblValidacion.Text = "No se agregaron archivos ni respuestas"
                 ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
                 Exit Sub
             End If
-            guardar()
 
+            lblValidacion.Text = "Archivo subido"
+            inicio()
+            ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
         Else
+            ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
+
+        End If
+    End Sub
+
+    Private Sub guardar_correspondencia()
+        guardar()
+        lblValidacion.Text = "Registro SUbido"
+        inicio()
+        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
+
+    End Sub
+
+    Protected Sub Btn_Siguiente_Click(sender As Object, e As EventArgs) Handles Btn_Siguiente.Click
+        If Rd_Fotografias.Checked = True Then
+            subir_archivo()
+        ElseIf Rd_Cuestionario.Checked = True Then
+            guardar_correspondencia()
+        Else
+            lblValidacion.Text = "Seleccione si desea subir archivo o contestar cuestionario"
             ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
 
         End If

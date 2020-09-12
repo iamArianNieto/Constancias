@@ -18,10 +18,7 @@
             $("#myModalDatInc").modal('hide');
         }
 
-        function MuestraRes(valor) {
-            document.getElementById('temporal').innerHTML = valor;
 
-        }
 
     </script>
 
@@ -62,7 +59,12 @@
                      </asp:UpdatePanel>
                 </div>
                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                     <div id="temporal"></div>
+                     <asp:UpdatePanel ID="UpdatePanel9" runat="server">
+                         <ContentTemplate>
+                            <asp:Panel ID="Panel" runat="server" ></asp:Panel>
+          
+                         </ContentTemplate>
+                     </asp:UpdatePanel>
                      
 
                  </div>
@@ -114,7 +116,6 @@
     <div>
         <asp:UpdatePanel ID="UpdatePanel7" runat="server">
             <ContentTemplate>
-                <asp:TextBox ID="Txt_GenerarCadena" runat="server" Style="text-transform:uppercase"></asp:TextBox>
                 <asp:TextBox ID="Txt_idconferencia" runat="server"></asp:TextBox>
                 <asp:TextBox ID="Txt_auxusuario" runat="server"></asp:TextBox>
             </ContentTemplate>
@@ -126,7 +127,7 @@
       <div class="modal-content">
         <div class="modal-header">           
 
-          <h3  class="modal-title" >¡ Error !</h3>
+          <h3  class="modal-title" >¡ Sistema !</h3>
             <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
           
         </div>
@@ -134,7 +135,7 @@
             <asp:UpdatePanel ID="UpdatePanel8" runat="server">
                 <ContentTemplate>
 
-                  <asp:Label ID="lblValidacion" runat="server" Text="" Visible="false" Style="color:#000000"></asp:Label>     
+                  <asp:Label ID="lblValidacion" runat="server" Text="" Visible="true" Style="color:black"></asp:Label>     
                 </ContentTemplate>
             </asp:UpdatePanel>
         

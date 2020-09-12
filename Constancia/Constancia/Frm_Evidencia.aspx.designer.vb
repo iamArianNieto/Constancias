@@ -68,6 +68,24 @@ Partial Public Class Frm_Evidencia
     Protected WithEvents ImBtn_Cuestionario As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
+    '''Control UpdatePanel9.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents UpdatePanel9 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''Control Panel.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Panel As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
     '''Control UpdatePanel1.
     '''</summary>
     '''<remarks>
@@ -147,15 +165,6 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents UpdatePanel7 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''Control Txt_GenerarCadena.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Txt_GenerarCadena As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Control Txt_idconferencia.
