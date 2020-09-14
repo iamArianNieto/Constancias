@@ -3,13 +3,14 @@
 Public Class Frm_Evidencia
     Inherits System.Web.UI.Page
 
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             inicio()
             'Txt_idconferencia.Text = Session("Id_Conferencia") 1001
             Txt_idconferencia.Text = "1001"
             Txt_auxusuario.Text = Session("Usuario")
-            Panel.HorizontalAlign = HorizontalAlign.Left
+            'elPanel2.HorizontalAlign = HorizontalAlign.Left
 
         End If
     End Sub
@@ -172,39 +173,44 @@ Public Class Frm_Evidencia
         Dim dt As DataTable
         dt = conferencia.Traer_Conferencia(Txt_idconferencia.Text)
         Dim contador As Integer = 1
+
         Dim resultado As String = ""
+        Dim label As Label
+        Dim txt_pregunta As TextBox
         For Each row As DataRow In dt.Rows
-            Dim label As New Label
+            label = New Label
             label.ID = "lbl_pregunta" & contador
             label.Text = contador & "." & row("Pregunta")
             label.Font.Bold = True
             label.Width = Unit.Percentage(100)
-            Panel.Controls.Add(label)
-            Dim txt_pregunta As New TextBox
+            elPanel2.Controls.Add(label)
+            txt_pregunta = New TextBox
             txt_pregunta.Width = Unit.Percentage(100)
             txt_pregunta.ID = "txt_pregunta" & contador
-            Panel.Controls.Add(txt_pregunta)
+
+            'txt_pregunta(contador_com).AutoPostBack = True
+            elPanel2.Controls.Add(txt_pregunta)
             contador = contador + 1
         Next
+
+
+
     End Sub
 
+
+
     Private Sub guardar()
+        Dim conferencia As New Cat_Conferencia
         Dim respuestas As New Cat_Respuestas
-        Dim auxcon As Integer = 1
-        Dim c As Control
-        For Each ctrl As Control In Panel.Controls
-            'Comparamos el nombre del control con el nombre que buscamos
-            'Hace la comparación en mayusculas.
-            If ctrl.ID = "txt_pregunta1" Then
-                'Ha sido encontrado. Asignamos el control encontrado y salimos del for
-                c = ctrl
-                Exit For
-            End If
-
+        Dim contador As Integer = 1
+        Dim dt As DataTable
+        dt = conferencia.Traer_Conferencia(Txt_idconferencia.Text)
+        For Each row As DataRow In dt.Rows
+            contador = contador + 1
         Next
-        'MsgBox(c.ToString())
-
-
+        Dim txt As TextBox = CType(elPanel2.FindControl("txt_pregunta1"), TextBox)
+        MsgBox(txt.Text)
+        'ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "generarcadena", "generarcadena('" & contador & "')", True)
         'respuestas.Insertar(Txt_idconferencia.Text, auxcon, texto.Text)
         'auxcon = auxcon + 1
 
@@ -244,9 +250,9 @@ Public Class Frm_Evidencia
 
     Private Sub guardar_correspondencia()
         guardar()
-        lblValidacion.Text = "Registro SUbido"
-        inicio()
-        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
+        'lblValidacion.Text = "Registro SUbido"
+        'inicio()
+        'ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
 
     End Sub
 

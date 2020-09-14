@@ -77,13 +77,22 @@ Partial Public Class Frm_Evidencia
     Protected WithEvents UpdatePanel9 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''Control Panel.
+    '''Control elPanel.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Panel As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents elPanel As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
+    '''Control elPanel2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents elPanel2 As Global.System.Web.UI.WebControls.PlaceHolder
     
     '''<summary>
     '''Control UpdatePanel1.
@@ -183,6 +192,24 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Txt_auxusuario As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control txt_auxres.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txt_auxres As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control btn_agregar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_agregar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control UpdatePanel8.

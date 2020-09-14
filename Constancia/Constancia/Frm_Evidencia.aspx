@@ -18,7 +18,26 @@
             $("#myModalDatInc").modal('hide');
         }
 
+        function generarcadena(valor) {
+            var x = parseInt(valor);
 
+            
+            var contador = 1;
+            var respuesta = "";
+            while (contador<=x)
+            {
+
+                var text = document.getElementById('ContentPlaceHolder1_txt_pregunta' + contador).innerHTML;
+                alert(x);
+                respuesta = respuesta + "" + text + "¥";
+                contador = contador + 1; 
+            }
+
+            alert(respuesta);
+
+            document.getElementById("<%=Txt_auxusuario.ClientID%>").value = respuesta;
+
+        }
 
     </script>
 
@@ -61,8 +80,8 @@
                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                      <asp:UpdatePanel ID="UpdatePanel9" runat="server">
                          <ContentTemplate>
-                            <asp:Panel ID="Panel" runat="server" ></asp:Panel>
-          
+                            <!--<asp:Panel ID="elPanel" runat="server" ></asp:Panel>-->
+                             <asp:PlaceHolder ID="elPanel2" runat="server"></asp:PlaceHolder>
                          </ContentTemplate>
                      </asp:UpdatePanel>
                      
@@ -118,6 +137,8 @@
             <ContentTemplate>
                 <asp:TextBox ID="Txt_idconferencia" runat="server"></asp:TextBox>
                 <asp:TextBox ID="Txt_auxusuario" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txt_auxres" runat="server"></asp:TextBox>
+                <asp:Button ID="btn_agregar" runat="server" Text="Button" />
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
