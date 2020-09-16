@@ -6,9 +6,15 @@ Public Class Frm_Evidencia
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
+
             inicio()
-            'Txt_idconferencia.Text = Session("Id_Conferencia") 1001
-            Txt_idconferencia.Text = "1001"
+            Dim conestancias As New Cat_Constancias
+
+            Session("Id_Conferencia") = "1001"
+
+            Txt_idconferencia.Text = Session("Id_Conferencia")
+            Txt_auxCorreo.Text = conestancias.Traer_correo(Txt_idconferencia.Text)
+            'Txt_idconferencia.Text = "1001"
             Txt_auxusuario.Text = Session("Usuario")
             'elPanel2.HorizontalAlign = HorizontalAlign.Left
 
@@ -23,6 +29,8 @@ Public Class Frm_Evidencia
         ImBtn_Cuestionario.Enabled = False
         ImBtn_Fotografia.Enabled = False
         FileUp.Visible = False
+        GridView1.Visible = False
+
     End Sub
 
     Private Sub seleccion()
@@ -32,12 +40,14 @@ Public Class Frm_Evidencia
             ImBtn_Fotografia.ImageUrl = "img/fotografias.png"
             ImBtn_Cuestionario.ImageUrl = "img/cuestionario_desahabilitado.png"
             FileUp.Visible = True
+            GridView1.Visible = False
         ElseIf Rd_Cuestionario.Checked = True Then
             Rd_Fotografias.Checked = False
             Rd_Cuestionario.Checked = True
             ImBtn_Fotografia.ImageUrl = "img/fotografias_desahabilitado.png"
             ImBtn_Cuestionario.ImageUrl = "img/cuestionario.png"
             FileUp.Visible = False
+            GridView1.Visible = True
             cargar_preguntas()
         Else
 
@@ -178,18 +188,18 @@ Public Class Frm_Evidencia
         Dim label As Label
         Dim txt_pregunta As TextBox
         For Each row As DataRow In dt.Rows
-            label = New Label
-            label.ID = "lbl_pregunta" & contador
-            label.Text = contador & "." & row("Pregunta")
-            label.Font.Bold = True
-            label.Width = Unit.Percentage(100)
-            elPanel2.Controls.Add(label)
-            txt_pregunta = New TextBox
-            txt_pregunta.Width = Unit.Percentage(100)
-            txt_pregunta.ID = "txt_pregunta" & contador
+            'label = New Label
+            'label.ID = "lbl_pregunta" & contador
+            'label.Text = contador & "." & row("Pregunta")
+            'label.Font.Bold = True
+            'label.Width = Unit.Percentage(100)
+            'elPanel2.Controls.Add(label)
+            'txt_pregunta = New TextBox
+            'txt_pregunta.Width = Unit.Percentage(100)
+            'txt_pregunta.ID = "txt_pregunta" & contador
 
-            'txt_pregunta(contador_com).AutoPostBack = True
-            elPanel2.Controls.Add(txt_pregunta)
+            ''txt_pregunta(contador_com).AutoPostBack = True
+            'elPanel2.Controls.Add(txt_pregunta)
             contador = contador + 1
         Next
 
@@ -202,17 +212,32 @@ Public Class Frm_Evidencia
     Private Sub guardar()
         Dim conferencia As New Cat_Conferencia
         Dim respuestas As New Cat_Respuestas
+        Dim constancias As New Cat_Constancias
         Dim contador As Integer = 1
-        Dim dt As DataTable
-        dt = conferencia.Traer_Conferencia(Txt_idconferencia.Text)
-        For Each row As DataRow In dt.Rows
-            contador = contador + 1
-        Next
-        Dim txt As TextBox = CType(elPanel2.FindControl("txt_pregunta1"), TextBox)
-        MsgBox(txt.Text)
+        'Dim dt As DataTable
+        'dt = conferencia.Traer_Conferencia(Txt_idconferencia.Text)
+        'For Each row As DataRow In dt.Rows
+        '    contador = contador + 1
+        'Next
+        'Dim txt As TextBox = CType(elPanel2.FindControl("txt_pregunta1"), TextBox)
+        'MsgBox(txt.Text)
         'ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "generarcadena", "generarcadena('" & contador & "')", True)
         'respuestas.Insertar(Txt_idconferencia.Text, auxcon, texto.Text)
         'auxcon = auxcon + 1
+
+        GridView1.Visible = True
+        Dim dt1 As DataTable = New DataTable()
+        Dim row As DataRow = dt1.NewRow()
+        Dim no_constancias As String = constancias.Traer_idconstancias(Txt_idconferencia.Text)
+
+        For i As Integer = 0 To GridView1.Rows.Count - 1
+            Dim txtUsrId As TextBox = CType(GridView1.Rows(i).FindControl("Txt_Respuesta"), TextBox)
+            Dim UserID As String = txtUsrId.Text
+
+            respuestas.Insertar(no_constancias, contador, UserID, Txt_auxCorreo.Text)
+            contador = contador + 1
+        Next
+
 
     End Sub
 
@@ -250,9 +275,9 @@ Public Class Frm_Evidencia
 
     Private Sub guardar_correspondencia()
         guardar()
-        'lblValidacion.Text = "Registro SUbido"
-        'inicio()
-        'ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
+        lblValidacion.Text = "Registro Subido"
+        inicio()
+        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
 
     End Sub
 
@@ -261,10 +286,15 @@ Public Class Frm_Evidencia
             subir_archivo()
         ElseIf Rd_Cuestionario.Checked = True Then
             guardar_correspondencia()
+
         Else
             lblValidacion.Text = "Seleccione si desea subir archivo o contestar cuestionario"
             ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
 
         End If
+    End Sub
+
+    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
+
     End Sub
 End Class

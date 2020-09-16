@@ -206,6 +206,17 @@
     <Content Include="bootstrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="bootstrap\js\bootstrap.js.map" />
     <Content Include="bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="imagenes\favicon.ico" />
     <Content Include="Login.aspx" />
@@ -247,6 +258,11 @@
     <Compile Include="Controlador\Conexion_Admin.vb" />
     <Compile Include="Controlador\Conexion_Ponencia.vb" />
     <Compile Include="Controlador\Conexion_Usuarios.vb" />
+    <Compile Include="DataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Administracion.aspx.designer.vb">
       <DependentUpon>Frm_Administracion.aspx</DependentUpon>
     </Compile>
@@ -300,6 +316,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modelo\Cat_Conferencia.vb" />
+    <Compile Include="Modelo\Cat_Constancias.vb" />
     <Compile Include="Modelo\Cat_Cuestionario.vb" />
     <Compile Include="Modelo\Cat_Respuestas.vb" />
     <Compile Include="Modelo\Cat_Usuario.vb" />

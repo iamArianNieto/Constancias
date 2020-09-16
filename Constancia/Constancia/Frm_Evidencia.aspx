@@ -81,8 +81,25 @@
                      <asp:UpdatePanel ID="UpdatePanel9" runat="server">
                          <ContentTemplate>
                             <!--<asp:Panel ID="elPanel" runat="server" ></asp:Panel>-->
-                             <asp:PlaceHolder ID="elPanel2" runat="server"></asp:PlaceHolder>
-                         </ContentTemplate>
+<%--                             <asp:PlaceHolder ID="elPanel2" runat="server"></asp:PlaceHolder>--%>
+                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" Width="276px">
+                                 <Columns>
+                                     <asp:BoundField DataField="Id_pregunta" HeaderText="Id_pregunta" SortExpression="Id_pregunta" />
+                                     <asp:BoundField DataField="Pregunta" HeaderText="Pregunta" SortExpression="Pregunta" />
+                                          <asp:TemplateField HeaderText="respuesta">
+                        <ItemTemplate>
+                            <asp:TextBox ID="Txt_Respuesta" runat="server"></asp:TextBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                                 </Columns>
+                             </asp:GridView>
+                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:GeneradorConnectionString %>" SelectCommand="SELECT [Id_pregunta], [Pregunta] FROM [Cuestionario] WHERE ([Id_conferencia] = @Id_conferencia)">
+                                            <SelectParameters>
+                                                <asp:SessionParameter Name="Id_conferencia" SessionField="Id_Conferencia" Type="String" />
+                                            </SelectParameters>
+                             </asp:SqlDataSource>
+                             <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+                        </ContentTemplate>
                      </asp:UpdatePanel>
                      
 
@@ -138,6 +155,7 @@
                 <asp:TextBox ID="Txt_idconferencia" runat="server"></asp:TextBox>
                 <asp:TextBox ID="Txt_auxusuario" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txt_auxres" runat="server"></asp:TextBox>
+                <asp:TextBox ID="Txt_auxCorreo" runat="server"></asp:TextBox>
                 <asp:Button ID="btn_agregar" runat="server" Text="Button" />
             </ContentTemplate>
         </asp:UpdatePanel>
