@@ -32,6 +32,44 @@
 
     End Function
 
+    Public Function TraerNombreUsuario(ByRef usuario As String)
+        Conexion_Usuarios.conectarse()
+        Dim Datos As String
+        Dim sql As String
+
+        Conexion_Usuarios.cmd.CommandType = CommandType.Text
+        Conexion_Usuarios.cmd.Connection = Conexion_Usuarios.conn
+        Conexion_Usuarios.sql = ""
+        sql = ""
+        sql = sql + "select concat(Nombre,' ',Ape_Paterno,' ',Ape_Materno) as 'nombre', "
+        sql = sql + " "
+        sql = sql + "from Usuario where Numero_cuenta='" & usuario & "' "
+        sql = sql + "order by Numero_cuenta desc "
+        Conexion_Usuarios.sql = sql
+        Conexion_Usuarios.cmd.CommandText = Conexion_Usuarios.sql
+        Try
+            Conexion_Usuarios.dr = Conexion_Usuarios.cmd.ExecuteReader()
+            'Existe algun campo
+            If Conexion_Usuarios.dr.HasRows Then
+                While Conexion_Usuarios.dr.Read()
+                    Datos = Conexion_Usuarios.dr(0).ToString
+
+                End While
+
+                Conexion_Usuarios.conn.Close()
+            Else
+                Datos = ""
+
+                Conexion_Usuarios.conn.Close()
+            End If
+        Catch ex As Exception
+            ex.ToString()
+            Conexion_Usuarios.conn.Close()
+        End Try
+        Conexion_Usuarios.conn.Close()
+        Return Datos
+    End Function
+
 
     Public Function TraerDatosUsuario_Principal(ByRef usuario As String, ByRef pass As String)
         Conexion_Usuarios.conectarse()

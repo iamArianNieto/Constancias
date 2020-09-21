@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\colortip-1.0-jquery.css" />
     <Content Include="css\main.css" />
     <Content Include="css\Modal.css" />
     <Content Include="css\RadioBotones.css" />
@@ -173,7 +174,9 @@
     <Content Include="img\cerrar.png" />
     <Content Include="img\check_evidencias.png" />
     <Content Include="img\check_Mesa de trabajo 1.png" />
+    <Content Include="img\Constancia.jpg" />
     <Content Include="img\cuestionario.png" />
+    <Content Include="img\cuestionario2.png" />
     <Content Include="img\cuestionario_desahabilitado.png" />
     <Content Include="img\degradado.png" />
     <Content Include="img\descargar.png" />
@@ -181,7 +184,9 @@
     <Content Include="img\flecha.png" />
     <Content Include="img\fondo.png" />
     <Content Include="img\fondo2.png" />
+    <Content Include="img\fondo3.png" />
     <Content Include="img\fotografias.png" />
+    <Content Include="img\fotografias2.png" />
     <Content Include="img\fotografias_desahabilitado.png" />
     <Content Include="img\horario.png" />
     <Content Include="img\login.png" />
@@ -190,6 +195,8 @@
     <Content Include="img\Reconocimiento.svg" />
     <Content Include="img\subir_fotografias.png" />
     <Content Include="img\thumb.png" />
+    <Content Include="jquery\colortip-1.0-jquery.css" />
+    <Content Include="jquery\colortip-1.0-jquery.js" />
     <Content Include="jquery\jquery-3.5.1.slim.min.js" />
     <Content Include="jquery\jquery.min.js" />
     <Content Include="LoginUser.aspx" />
@@ -217,6 +224,7 @@
     <Content Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
+    <None Include="My Project\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="imagenes\favicon.ico" />
     <Content Include="Login.aspx" />

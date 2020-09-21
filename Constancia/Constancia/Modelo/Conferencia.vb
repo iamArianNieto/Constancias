@@ -7,7 +7,7 @@
         Conexion_Usuarios.cmd.Connection = Conexion_Usuarios.conn
 
         Conexion_Usuarios.sql = ""
-        Conexion_Usuarios.sql = "select count(*) as 'Total' from Conferencias where Contraseña = '" & contrasena & "' and Id_Activos=2 "
+        Conexion_Usuarios.sql = "select count(*) as 'Total' from Conferencia where Contraseña = '" & contrasena & "'"
         Conexion_Usuarios.cmd.CommandText = Conexion_Usuarios.sql
         Try
             Conexion_Usuarios.conectarse()
@@ -37,7 +37,8 @@
         Conexion_Usuarios.cmd.CommandType = CommandType.Text
         Conexion_Usuarios.cmd.Connection = Conexion_Usuarios.conn
         Conexion_Usuarios.sql = ""
-        Conexion_Usuarios.sql = "select Nombre_conferencia,Nombre_ponente,Fecha_conferencia,Horario,Id_conferencia from Conferencia where Contraseña='" & pass & "' "
+        Conexion_Usuarios.sql = "SET LANGUAGE 'español' select Nombre_conferencia,Nombre_ponente, "
+        Conexion_Usuarios.sql = Conexion_Usuarios.sql + "(DATENAME(DD,Fecha_conferencia) + ' de ' +DATENAME(mm,Fecha_conferencia) + ' de ' + DATENAME(yyyy, Fecha_conferencia)) AS Fecha,Horario,Id_conferencia from Conferencia where Contraseña='" & pass & "'  "
         Conexion_Usuarios.cmd.CommandText = Conexion_Usuarios.sql
         Try
             Conexion_Usuarios.dr = Conexion_Usuarios.cmd.ExecuteReader()

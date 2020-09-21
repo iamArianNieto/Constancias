@@ -44,11 +44,11 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
 
-    <div class="main_head">
-        <div class="main_head_title">GENERADOR DE CONSTANCIAS</div>
-        <div class="main_head_subtitle">ADMINISTRADOR</div>
-        <img src="img/Logo_Plandi.png" class="img_logo_plandi"/>
-           <%-- <hr style=""/>--%>
+    <div class="main_head" style="justify-content:center;" >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display:flex;justify-content:center;">
+            <img src="img/Logo_Plandi.png" class="img_logo_plandi" style="position:relative;text-align:center; width: calc(6em + 10vw);"/>
+        </div>
+        <hr style="border-color:#ACE7DE;"/>
     </div>
 <div class="main_body">
 		<div class="contenedor_login">
@@ -57,7 +57,7 @@
                         <div class="lbl_bienvenido">¡BIENVENIDO!</div>
                         <br />
                         <div class="lbl_generaconstancias">
-                           Aquí podás obtener de manera fácil y rápida tu constancia.
+                           Aquí podrás obtener de manera fácil y rápida tu constancia.
                         </div>
                      
 			        </div> 

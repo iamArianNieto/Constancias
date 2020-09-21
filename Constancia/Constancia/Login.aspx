@@ -11,9 +11,6 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/style-constancias.css"/>
-
-
-    
     <!--Ventana Modal-->
     <link href="css/Modal.css" rel="stylesheet" />
 
@@ -39,7 +36,7 @@
         <div class="main_head_title">GENERADOR DE CONSTANCIAS</div>
         <div class="main_head_subtitle">ADMINISTRADOR</div>
         <img src="img/Logo_Plandi.png" class="img_logo_plandi"/>
-           <%-- <hr style=""/>--%>
+        <hr style=""/>
    
 	<div class="main_body">
 		<div class="contenedor_login">

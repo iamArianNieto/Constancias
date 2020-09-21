@@ -9,6 +9,12 @@ html, body, html * {
     height: 100vh;
 }
 
+h6 {
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+
 body {
     /* Ruta relativa o completa a la imagen */
     background-image: url(../img/fondo.png);
@@ -25,13 +31,13 @@ body {
     /* Fuente para el texto */
     text-align: center;
     font-family: 'Roboto';
-    color:#FFF;
-    overflow:hidden;
+    color: #FFF;
+    overflow: hidden;
 }
 
 .main_head {
-    max-height:200px;
-    min-height:30px;
+    max-height: 200px;
+    min-height: 30px;
     height: 10%;
 }
 
@@ -39,11 +45,12 @@ body {
     font-family: 'Roboto';
     color: #FFF;
     font-size: calc(0.5em + 1vw);
-    font-weight:bold;
-    text-align:left;
-    margin-left:2%;
-    margin-top:10px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 2%;
+    margin-top: 10px;
 }
+
 .main_head_subtitle {
     font-family: 'Roboto';
     color: #FFF;
@@ -51,6 +58,7 @@ body {
     text-align: left;
     margin-left: 2%;
 }
+
 .img_logo_plandi {
     width: calc(5em + 8vw);
     height: auto;
@@ -60,28 +68,28 @@ body {
 }
 
 .main_body {
-    vertical-align:central;
-    justify-content:center;
-    text-align:center;
-    margin: 80px auto auto auto;
-    width:90%;
-    max-width:980px;
+    vertical-align: central;
+    justify-content: center;
+    text-align: center;
+    margin: 4% auto auto auto;
+    width: 90%;
+    max-width: 980px;
 }
+
 .img_login {
-    width:300px;
-    height:50%;
+    width: 300px;
+    height: 50%;
 }
 
 .contenedor_login {
     align-content: center;
-    margin-top: 45px;
+    margin-top: 35px;
     background-color: #fff;
     max-width: 90%;
     border: none;
     margin-left: auto;
     margin-right: auto;
     border-radius: 50px;
-
     -webkit-box-shadow: 7px 9px 27px -9px rgba(0,0,0,0.49);
     -moz-box-shadow: 7px 9px 27px -9px rgba(0,0,0,0.49);
     box-shadow: 7px 9px 27px -9px rgba(0,0,0,0.49);
@@ -109,6 +117,7 @@ body {
     min-height: 430px;
     vertical-align: central;
 }
+
 .login_derecho {
 }
 
@@ -121,18 +130,19 @@ body {
     vertical-align: central;
     margin-top: 90px;
 }
+
 .lbl_generaconstancias {
     font-family: 'Roboto';
     color: #FFF;
     font-size: calc(.7em + .7vw);
     text-align: center;
     vertical-align: central;
-    font-weight:200;
+    font-weight: 200;
 }
 
 .lbl_usuario {
     font-family: 'Roboto';
-    font-weight:bold;
+    font-weight: bold;
     color: #77D2FF;
     font-size: calc(.6em + .6vw);
     text-align: left;
@@ -161,17 +171,19 @@ body {
     margin-bottom: 10px;
     margin-right: 10px;
 }
-.btn_siguiente:hover {
-    background-color: #77D2FF;
-    text-decoration: none;
-    outline:none;
+
+    .btn_siguiente:hover {
+        background-color: #77D2FF;
+        text-decoration: none;
+        outline: none;
+    }
+
+    .btn_siguiente:active {
+        background-color: #6AC0E2;
+        text-decoration: none;
+        outline: none;
+    }
+
+hr {
+    border-color: azure;
 }
-
-.btn_siguiente:active {
-    background-color: #6AC0E2;
-    text-decoration: none;
-    outline: none;
-}
-
-
-

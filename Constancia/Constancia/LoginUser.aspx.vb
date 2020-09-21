@@ -1,4 +1,6 @@
-﻿Public Class LoginAdmin
+﻿Imports System.Data.SqlClient
+
+Public Class LoginAdmin
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -15,14 +17,15 @@
 
         usuario = Txt_Usuario.Text
         pass = Txt_Contrasena.Text
-
-        If validar() = True Then
+        Session("Contrasena") = Txt_Contrasena.Text
+        If Validar() = True Then
             Try
                 resultado = Contrasena.Constrasena(pass)
                 If resultado = 1 Then
                     'Informacion de la conferencia
                     Dim Datoconferencia(4) As String
                     Session("Usuario") = Txt_Usuario.Text
+                    Session("correo") = Txt_Correo.Text
                     Datoconferencia = Contrasena.TraerDatosConferencia(pass)
                     Session("Conferencia") = Datoconferencia(0)
                     Session("Ponente") = Datoconferencia(1)
@@ -30,7 +33,8 @@
                     Session("Hora") = Datoconferencia(3)
                     Session("Id_Conferencia") = Datoconferencia(4)
                     Conexion_Usuarios.conn.Close()
-                    Response.Redirect("Frm_Evidencias.aspx")
+                    LlenaConstancia(Datoconferencia(4))
+                    Response.Redirect("Frm_Evidencia.aspx")
 
                 Else
                     Borrar()
@@ -49,7 +53,42 @@
 
         End If
     End Sub
+    Protected Sub LlenaConstancia(ByRef Id_conferencia As String)
+        Dim ID As String = ""
+        Dim InsertaConstancias As New Cat_Constancias
 
+
+        Conexion_Admin.cmd.CommandType = CommandType.Text
+        Conexion_Admin.cmd.Connection = Conexion_Admin.conn
+        Conexion_Admin.conn.Open()
+        Conexion_Admin.sql = ""
+        Conexion_Admin.sql = "select CONCAT('" & Id_conferencia & "-', ISNULL(count(Id_constancia),0) + 1) from Constancia where Id_conferencia= '" & Id_conferencia & "'"
+        Conexion_Admin.cmd.CommandText = Conexion_Admin.sql
+        Try
+            Conexion_Admin.dr = Conexion_Admin.cmd.ExecuteReader()
+            'Existe algun campo
+            If Conexion_Admin.dr.HasRows Then
+                While Conexion_Admin.dr.Read()
+                    ID = Conexion_Admin.dr(0).ToString
+                    Session("Id_Constancia") = ID
+                End While
+                Conexion_Admin.conn.Close()
+                SqlConnection.ClearPool(Conexion_Admin.conn)
+                InsertaConstancias.InsertConstancia2(ID, Session("Id_Conferencia"), Session("Usuario"), Session("correo"))
+            Else
+                ID = ""
+                Conexion_Admin.conn.Close()
+                SqlConnection.ClearPool(Conexion_Admin.conn)
+            End If
+        Catch ex As Exception
+            ex.ToString()
+            Conexion_Admin.conn.Close()
+            SqlConnection.ClearPool(Conexion_Admin.conn)
+        End Try
+        Conexion_Admin.conn.Close()
+        SqlConnection.ClearPool(Conexion_Admin.conn)
+
+    End Sub
     Private Function Validar()
         Dim Resultado As Boolean = False
         If Txt_Usuario.Text = "" And Txt_Contrasena.Text = "" And Txt_Correo.Text = "" Then

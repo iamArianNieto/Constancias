@@ -1,12 +1,75 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master_User.Master" CodeBehind="Frm_Evidencia.aspx.vb" Inherits="Constancia.Frm_Evidencia" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <link href="css/style-constanciasUsuario.css" rel="stylesheet" />
+
     <link href="css/RadioBotones.css" rel="stylesheet" />
-    <link href="css/style-constanciasUsuario.css" rel="stylesheet" />
+
     <!--Bootstrap 4.5.0-->
   	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <script src="jquery/jquery-3.5.1.slim.min.js"></script>
     <script src="bootstrap/js/popper.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+        
+    <!--Ventana Modal-->
+    <link href="css/Modal.css" rel="stylesheet" />
+    <script>
+        function fn_cargar() {
+            //alert("Hola");
+            var fileuploadctrl = document.getElementById('<%= FileUp.ClientID %>');
+             fileuploadctrl.click();
+        }
+    </script>
+
+    <style>
+        table, table tr, table td {
+            display: grid;
+            width:100%;
+        }
+
+         .boton{
+            width:90%;
+            height:50px; 
+            z-index:1;
+            position:absolute;
+            background-color: rgb(0,229,174);
+            border:none;
+            outline:none;
+            text-decoration:none;
+            border-radius: 10px;
+            color:#FFF;
+
+        }
+         .boton:hover{
+            background-color: #77D2FF;
+            text-decoration: none;
+            outline:none;
+            border:none;
+        }
+         .boton:active{
+             background-color: #6AC0E2;
+             text-decoration: none;
+             outline: none;
+             border:none;
+        }
+         .boton:focus{
+             text-decoration: none;
+             outline: none;
+             border:none;
+        }
+        .btn_imagen {
+        width:40px; 
+        z-index:2; 
+        margin-left:10px;
+        position:absolute; 
+        }
+
+        .btn_content{
+            display:flex;  
+            position:relative; 
+            margin-bottom:80px;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script>
@@ -16,6 +79,7 @@
 
         function cerrarDatos() {
             $("#myModalDatInc").modal('hide');
+
         }
 
         function generarcadena(valor) {
@@ -45,19 +109,19 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     
-    <div class="main_head">
-        <div class="main_head_title">GENERADOR DE CONSTANCIAS</div>
-        <div class="main_head_subtitle">ADMINISTRADOR</div>
-        <img src="img/Logo_Plandi.png" class="img_logo_plandi"/>
-           <%-- <hr style=""/>--%>
+    <div class="main_head" style="justify-content:center;" >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display:flex;justify-content:center;">
+            <img src="img/Logo_Plandi.png" class="img_logo_plandi" style="position:relative;text-align:center; width: calc(6em + 10vw);"/>
+        </div>
+        <hr style="border-color:#ACE7DE;"/>
     </div>
         <br />
         <p >Elige una de las siguientes opciones para continuar.</p>
     <div class="main_body">        
 		<div class="contenedor_login">
             <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <asp:Label ID="Label2" cssclass="lbl_usuario" runat="server" Text="Subir Evidencias"></asp:Label>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:left; left:30px; top:20px;">
+                <asp:Label ID="Label2" cssclass="lbl_evidencias" runat="server" Text="Subir Evidencias"></asp:Label><br /><br /><br />
             </div>
             </div>
             <div class="container">            
@@ -66,29 +130,32 @@
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                         <ContentTemplate>
-                             <asp:ImageButton ID="ImBtn_Fotografia" runat="server" ImageUrl="~/img/fotografias.png" CssClass="imagen" style="width:100%; height:auto;"/>
+                             <asp:ImageButton ID="ImBtn_Fotografia" runat="server" ImageUrl="~/img/fotografias.png" CssClass="imagen" style="width:auto; height:90px;"/>
+                            <br />
+                            <asp:RadioButton ID="Rd_Fotografias" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Fotografías"  />      
                         </ContentTemplate>
                     </asp:UpdatePanel>
                  </div>
                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                      <asp:UpdatePanel ID="UpdatePanel6" runat="server">
                          <ContentTemplate>
-                             <asp:ImageButton ID="ImBtn_Cuestionario" runat="server" ImageUrl="~/img/cuestionario.png"  CssClass="imagen" style="width:100%; height:auto;"/>
+                             <asp:ImageButton ID="ImBtn_Cuestionario" runat="server" ImageUrl="~/img/cuestionario.png"  CssClass="imagen" style="width:auto; height:90px;"/>
+                            <asp:RadioButton ID="Rd_Cuestionario" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Cuestionario" />
                          </ContentTemplate>
                      </asp:UpdatePanel>
                 </div>
+                
                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                      <asp:UpdatePanel ID="UpdatePanel9" runat="server">
                          <ContentTemplate>
                             <!--<asp:Panel ID="elPanel" runat="server" ></asp:Panel>-->
 <%--                             <asp:PlaceHolder ID="elPanel2" runat="server"></asp:PlaceHolder>--%>
-                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" Width="276px">
+                             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" RowStyle-VerticalAlign="Bottom" DataSourceID="SqlDataSource2" style="border:hidden; width:100%;" BorderStyle="None" GridLines="None" ShowHeader="False">
                                  <Columns>
-                                     <asp:BoundField DataField="Id_pregunta" HeaderText="Id_pregunta" SortExpression="Id_pregunta" />
                                      <asp:BoundField DataField="Pregunta" HeaderText="Pregunta" SortExpression="Pregunta" />
                                           <asp:TemplateField HeaderText="respuesta">
                         <ItemTemplate>
-                            <asp:TextBox ID="Txt_Respuesta" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="Txt_Respuesta" runat="server" CssClass="form-control txt_login" style="width:100%;" MaxLength="498"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
                                  </Columns>
@@ -106,41 +173,37 @@
                  </div>
               
             </div>
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server"><ContentTemplate>
-                        <asp:RadioButton ID="Rd_Fotografias" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Fotografías" />      
-                    </ContentTemplate></asp:UpdatePanel>
-                </div>
-                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                      <asp:UpdatePanel ID="UpdatePanel2" runat="server"><ContentTemplate>
-                            <asp:RadioButton ID="Rd_Cuestionario" runat="server" GroupName="TipoEvidencia"  AutoPostBack="True" Text="Cuestionario"/>
-                        </ContentTemplate></asp:UpdatePanel>
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                 </div>
-            </div>
+              <br />
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:left;">
                     <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                         <ContentTemplate>
-                            <asp:FileUpload ID="FileUp" runat="server" AllowMultiple="true" />
+
+                          <div class="col-md-12 btn_content">
+                                <img src="img/subir_fotografias.png" class="btn_imagen" />
+<%--                                <button type="button" class="boton" onclick="fn_cargar()" ID="Btn_subirFotografia" runat="server" >Subir Fotografía</button>--%>
+                                <asp:Button ID="Btn_subirFotografia" runat="server" Text="Subir Fotografía" CssClass="boton"/>
+                            </div>
+                            <div style="display:none;">
+
+                            <asp:FileUpload ID="FileUp" runat="server" AllowMultiple="true" visible="true"/>
+
+                            </div>
   
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <br />
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >                   
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >     
+                    <br />
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="text-align:right;">
-                    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                        <ContentTemplate>
-                            <asp:Button ID="Btn_Siguiente" runat="server" Text="Siguiente" CssClass="btn_siguiente" />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                    
+                    <asp:Button ID="Btn_Siguiente" runat="server" Text="Siguiente" CssClass="btn_siguiente" />
                 </div>
             </div>
             <br /> 
@@ -152,11 +215,11 @@
     <div>
         <asp:UpdatePanel ID="UpdatePanel7" runat="server">
             <ContentTemplate>
-                <asp:TextBox ID="Txt_idconferencia" runat="server"></asp:TextBox>
-                <asp:TextBox ID="Txt_auxusuario" runat="server"></asp:TextBox>
-                <asp:TextBox ID="txt_auxres" runat="server"></asp:TextBox>
-                <asp:TextBox ID="Txt_auxCorreo" runat="server"></asp:TextBox>
-                <asp:Button ID="btn_agregar" runat="server" Text="Button" />
+                <asp:TextBox ID="Txt_idconferencia" runat="server" Visible="false"></asp:TextBox>
+                <asp:TextBox ID="Txt_auxusuario" runat="server" Visible="false"></asp:TextBox>
+                <asp:TextBox ID="txt_auxres" runat="server" Visible="false"></asp:TextBox>
+                <asp:TextBox ID="Txt_auxCorreo" runat="server" Visible="false"></asp:TextBox>
+                <asp:Button ID="btn_agregar" runat="server" Text="Button" Visible="false"/>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
@@ -181,7 +244,7 @@
         </div>
         <div class="modal-footer" style="margin-left: auto;margin-right: auto;">
          <center>
-                    <a class="btn_siguiente" href="#" style="width:300px; height:60px; padding:7px;" onclick="cerrarDatos();" role="button">Aceptar</a>
+                    <a class="btn_siguiente" href="Frm_Constancia.aspx" style="width:300px; height:60px; padding:7px;" onclick="cerrarDatos();" role="button">Aceptar</a>
             </center>
         </div>
       </div>

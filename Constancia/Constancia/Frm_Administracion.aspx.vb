@@ -47,10 +47,20 @@
 
     End Sub
 
+    Private Sub Iniciar()
+        Txt_GenerarCadena.Text = ""
+        Lbl_validar.Text = ""
+
+        Txt_Ponente.Text = ""
+        Txt_Conferencia.Text = ""
+        Txt_Fecha.Text = ""
+        Txt_Hora.Text = ""
+    End Sub
 
     Protected Sub Btn_Generarcadena_Click(sender As Object, e As EventArgs) Handles Btn_Generarcadena.Click
         guardar()
-        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "Modal", "Modal()", True)
+        Iniciar()
+        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalInicial", "ModalInicial()", True)
 
     End Sub
 
@@ -65,7 +75,6 @@
         Loop
 
         conferencia.Insertar(aux_id, Txt_Conferencia.Text.ToUpper(), Txt_Ponente.Text.ToUpper(), Txt_Fecha.Text, Txt_Hora.Text, pass, Txt_AuxUsuario.Text)
-
         id = aux_id.ToString()
         lbl_clave.Text = pass
 
@@ -73,6 +82,7 @@
     End Function
 
     Private Function Crearcontrasena(ByRef longitud As Integer)
+        Dim catConferencia As New Cat_Constancias
         Dim caracteres As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
         Dim res As StringBuilder = New StringBuilder()
         Dim md As Random = New Random()
@@ -81,7 +91,7 @@
             res.Append(caracteres(md.Next(caracteres.Length)))
             i = i + 1
         Loop
-
+        catConferencia.LlenarCatCostancia(res.ToString())
         Return res.ToString()
     End Function
 

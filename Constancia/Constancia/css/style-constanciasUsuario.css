@@ -4,6 +4,12 @@ html, body, html * {
     font-family: 'Roboto';
 }
 
+h6 {
+    font-family: 'Roboto';
+    font-weight: bold;
+}
+
+
 .html, body {
     /* Para que funcione correctamente en Smartphones y Tablets */
     height: 100vh;
@@ -25,23 +31,41 @@ body {
     /* Fuente para el texto */
     text-align: center;
     font-family: 'Roboto';
-    color:#FFF;
-    overflow:hidden;
+    color: #FFF;
+    overflow: hidden;
 }
+
 p {
-   
     font-family: 'Roboto';
     color: #FFF;
     text-align: center;
     font-size: calc(0.4em + 1vw);
-    font-weight:200;
+    font-weight: 200;
 }
+
 .imagen {
-    width: calc(2em + 2vw);
+    text-decoration: none;
+    outline: none;
+    border: none;
 }
+
+    .imagen:active {
+        text-decoration: none;
+        outline: none;
+        border: none;
+    }
+
+    .imagen:focus {
+        width: calc(2em + 2vw);
+    }
+
+    .imagen:hover {
+        width: calc(2em + 2vw);
+    }
+
 .main_head {
-    max-height:200px;
-    min-height:30px;
+    max-height: 200px;
+    min-height: 30px;
     height: 10%;
 }
 
@@ -49,11 +73,12 @@ p {
     font-family: 'Roboto';
     color: #FFF;
     font-size: calc(0.5em + 1vw);
-    font-weight:bold;
-    text-align:left;
-    margin-left:2%;
-    margin-top:10px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 2%;
+    margin-top: 10px;
 }
+
 .main_head_subtitle {
     font-family: 'Roboto';
     color: #FFF;
@@ -61,6 +86,7 @@ p {
     text-align: left;
     margin-left: 2%;
 }
+
 .img_logo_plandi {
     width: calc(5em + 8vw);
     height: auto;
@@ -73,14 +99,15 @@ p {
     vertical-align: central;
     justify-content: center;
     text-align: center;
-    margin: 40px auto auto auto;
+    margin: 0px auto auto auto;
     width: 90%;
     min-height: 430px;
     max-width: 980px;
 }
+
 .img_login {
-    width:300px;
-    height:50%;
+    width: 300px;
+    height: 50%;
 }
 
 .contenedor_login {
@@ -88,6 +115,7 @@ p {
     margin-top: 5px;
     background-color: #fff;
     max-width: 90%;
+    max-height: 663px;
     border: none;
     margin-left: auto;
     margin-right: auto;
@@ -120,6 +148,7 @@ p {
     min-height: 430px;
     vertical-align: central;
 }
+
 .login_derecho {
 }
 
@@ -132,20 +161,29 @@ p {
     vertical-align: central;
     margin-top: 90px;
 }
+
 .lbl_generaconstancias {
     font-family: 'Roboto';
     color: #FFF;
     font-size: calc(.7em + .7vw);
     text-align: center;
     vertical-align: central;
-    font-weight:200;
+    font-weight: 200;
 }
 
 .lbl_usuario {
     font-family: 'Roboto';
-    font-weight:bold;
+    font-weight: bold;
     color: #000;
     font-size: calc(.6em + .6vw);
+    text-align: left;
+}
+
+.lbl_evidencias {
+    font-family: 'Roboto';
+    font-weight: bold;
+    color: #77D2FF;
+    font-size: calc(.8em + .8vw);
     text-align: left;
 }
 
@@ -172,17 +210,19 @@ p {
     margin-bottom: 10px;
     margin-right: 10px;
 }
-.btn_siguiente:hover {
-    background-color: #77D2FF;
-    text-decoration: none;
-    outline:none;
+
+    .btn_siguiente:hover {
+        background-color: #77D2FF;
+        text-decoration: none;
+        outline: none;
+    }
+
+    .btn_siguiente:active {
+        background-color: #6AC0E2;
+        text-decoration: none;
+        outline: none;
+    }
+
+hr {
+    border-color: azure;
 }
-
-.btn_siguiente:active {
-    background-color: #6AC0E2;
-    text-decoration: none;
-    outline: none;
-}
-
-
-

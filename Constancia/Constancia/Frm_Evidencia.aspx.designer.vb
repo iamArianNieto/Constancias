@@ -50,6 +50,15 @@ Partial Public Class Frm_Evidencia
     Protected WithEvents ImBtn_Fotografia As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
+    '''Control Rd_Fotografias.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Rd_Fotografias As Global.System.Web.UI.WebControls.RadioButton
+    
+    '''<summary>
     '''Control UpdatePanel6.
     '''</summary>
     '''<remarks>
@@ -66,6 +75,15 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ImBtn_Cuestionario As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Control Rd_Cuestionario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Rd_Cuestionario As Global.System.Web.UI.WebControls.RadioButton
     
     '''<summary>
     '''Control UpdatePanel9.
@@ -113,42 +131,6 @@ Partial Public Class Frm_Evidencia
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
-    '''Control UpdatePanel1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''Control Rd_Fotografias.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Rd_Fotografias As Global.System.Web.UI.WebControls.RadioButton
-    
-    '''<summary>
-    '''Control UpdatePanel2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''Control Rd_Cuestionario.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Rd_Cuestionario As Global.System.Web.UI.WebControls.RadioButton
-    
-    '''<summary>
     '''Control UpdatePanel4.
     '''</summary>
     '''<remarks>
@@ -158,6 +140,15 @@ Partial Public Class Frm_Evidencia
     Protected WithEvents UpdatePanel4 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
+    '''Control Btn_subirFotografia.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btn_subirFotografia As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Control FileUp.
     '''</summary>
     '''<remarks>
@@ -165,15 +156,6 @@ Partial Public Class Frm_Evidencia
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents FileUp As Global.System.Web.UI.WebControls.FileUpload
-    
-    '''<summary>
-    '''Control UpdatePanel3.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents UpdatePanel3 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
     '''Control Btn_Siguiente.

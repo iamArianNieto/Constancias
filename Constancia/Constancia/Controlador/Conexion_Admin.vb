@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Module Conexion_Admin
-    Public conn As New SqlConnection("Data Source=LAPTOP-QFFHU6F6\SQLEXPRESS; Initial Catalog=Generador; User ID=Axtic2020; Password=4x41cEgm161")
+    Public conn As New SqlConnection("Data Source=DESKTOP-IDI2JFL; Initial Catalog=Generador; User ID=Axtic2020; Password=4x41cEgm161")
     Public cmd As New SqlCommand
     Public dr As SqlDataReader
     Public dt As New DataTable

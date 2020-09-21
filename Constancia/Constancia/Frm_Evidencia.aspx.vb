@@ -1,4 +1,7 @@
 ﻿Imports System.IO
+Imports System
+Imports System.Data
+Imports System.Web.UI.WebControls
 
 Public Class Frm_Evidencia
     Inherits System.Web.UI.Page
@@ -10,13 +13,12 @@ Public Class Frm_Evidencia
             inicio()
             Dim conestancias As New Cat_Constancias
 
-            Session("Id_Conferencia") = "1001"
 
+            Txt_auxCorreo.Text = Session("correo")
             Txt_idconferencia.Text = Session("Id_Conferencia")
-            Txt_auxCorreo.Text = conestancias.Traer_correo(Txt_idconferencia.Text)
-            'Txt_idconferencia.Text = "1001"
             Txt_auxusuario.Text = Session("Usuario")
             'elPanel2.HorizontalAlign = HorizontalAlign.Left
+            Rd_Fotografias.Checked = True
 
         End If
     End Sub
@@ -24,33 +26,32 @@ Public Class Frm_Evidencia
     Private Sub inicio()
         Rd_Fotografias.Checked = False
         Rd_Cuestionario.Checked = False
-        ImBtn_Fotografia.ImageUrl = "img/fotografias_desahabilitado.png"
+        ImBtn_Fotografia.ImageUrl = "img/fotografias.png"
         ImBtn_Cuestionario.ImageUrl = "img/cuestionario_desahabilitado.png"
-        ImBtn_Cuestionario.Enabled = False
-        ImBtn_Fotografia.Enabled = False
-        FileUp.Visible = False
+        ImBtn_Cuestionario.Enabled = True
+        ImBtn_Fotografia.Enabled = True
         GridView1.Visible = False
 
     End Sub
 
     Private Sub seleccion()
+
         If Rd_Fotografias.Checked = True Then
             Rd_Fotografias.Checked = True
             Rd_Cuestionario.Checked = False
             ImBtn_Fotografia.ImageUrl = "img/fotografias.png"
             ImBtn_Cuestionario.ImageUrl = "img/cuestionario_desahabilitado.png"
-            FileUp.Visible = True
+            Btn_subirFotografia.Visible = True
             GridView1.Visible = False
         ElseIf Rd_Cuestionario.Checked = True Then
             Rd_Fotografias.Checked = False
             Rd_Cuestionario.Checked = True
             ImBtn_Fotografia.ImageUrl = "img/fotografias_desahabilitado.png"
             ImBtn_Cuestionario.ImageUrl = "img/cuestionario.png"
-            FileUp.Visible = False
+            Btn_subirFotografia.Visible = False
             GridView1.Visible = True
             cargar_preguntas()
         Else
-
         End If
     End Sub
 
@@ -214,27 +215,28 @@ Public Class Frm_Evidencia
         Dim respuestas As New Cat_Respuestas
         Dim constancias As New Cat_Constancias
         Dim contador As Integer = 1
-        'Dim dt As DataTable
-        'dt = conferencia.Traer_Conferencia(Txt_idconferencia.Text)
-        'For Each row As DataRow In dt.Rows
-        '    contador = contador + 1
-        'Next
-        'Dim txt As TextBox = CType(elPanel2.FindControl("txt_pregunta1"), TextBox)
-        'MsgBox(txt.Text)
-        'ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "generarcadena", "generarcadena('" & contador & "')", True)
-        'respuestas.Insertar(Txt_idconferencia.Text, auxcon, texto.Text)
-        'auxcon = auxcon + 1
+        Dim usuario As New Cat_Usuario
 
         GridView1.Visible = True
         Dim dt1 As DataTable = New DataTable()
         Dim row As DataRow = dt1.NewRow()
-        Dim no_constancias As String = constancias.Traer_idconstancias(Txt_idconferencia.Text)
+        'Dim nombreusuario As String = usuario.TraerNombreUsuario(Txt_auxusuario.Text)
+        Dim auxnumconstancia As Integer = 1
+        Dim constanciaaux As String = Txt_idconferencia.Text & "-" & auxnumconstancia.ToString()
 
+        Do While constancias.Existe_idconstancias(constanciaaux) = 1
+            auxnumconstancia = auxnumconstancia + 1
+            constanciaaux = Txt_idconferencia.Text & "-" & auxnumconstancia.ToString()
+        Loop
+        constancias.InsertConstancia(constanciaaux, Txt_idconferencia.Text, Txt_auxusuario.Text, Txt_auxCorreo.Text, "1", "0")
+
+        Session("Id_Constancia") = constanciaaux
+        'Session("Id_Constancia") = no_constancias
         For i As Integer = 0 To GridView1.Rows.Count - 1
             Dim txtUsrId As TextBox = CType(GridView1.Rows(i).FindControl("Txt_Respuesta"), TextBox)
             Dim UserID As String = txtUsrId.Text
 
-            respuestas.Insertar(no_constancias, contador, UserID, Txt_auxCorreo.Text)
+            respuestas.Insertar(constanciaaux, contador, UserID, Txt_auxCorreo.Text)
             contador = contador + 1
         Next
 
@@ -263,11 +265,28 @@ Public Class Frm_Evidencia
                 ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
                 Exit Sub
             End If
+            Dim constancias As New Cat_Constancias
+            Dim usuario As New Cat_Usuario
 
-            lblValidacion.Text = "Archivo subido"
+            'Dim nombreusuario As String = usuario.TraerNombreUsuario(Txt_auxusuario.Text)
+
+
+            Dim auxnumconstancia As Integer = 1
+            Dim constanciaaux As String = Txt_idconferencia.Text & "-" & auxnumconstancia.ToString()
+
+            Do While constancias.Existe_idconstancias(constanciaaux) = 1
+                auxnumconstancia = auxnumconstancia + 1
+                constanciaaux = Txt_idconferencia.Text & "-" & auxnumconstancia.ToString()
+            Loop
+            constancias.InsertConstancia(constanciaaux, Txt_idconferencia.Text, Txt_auxusuario.Text, Txt_auxCorreo.Text, "0", "1")
+
+
+
             inicio()
+            lblValidacion.Text = "Archivo cargado con éxito."
             ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
         Else
+            lblValidacion.Text = "No hay archivo agregado"
             ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
 
         End If
@@ -275,7 +294,7 @@ Public Class Frm_Evidencia
 
     Private Sub guardar_correspondencia()
         guardar()
-        lblValidacion.Text = "Registro Subido"
+        lblValidacion.Text = "Respuesta exitosa."
         inicio()
         ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "ModalDatos", "ModalDatos()", True)
 
@@ -294,7 +313,20 @@ Public Class Frm_Evidencia
         End If
     End Sub
 
-    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
+    Protected Sub ImBtn_Fotografia_Click(sender As Object, e As ImageClickEventArgs) Handles ImBtn_Fotografia.Click
+        Rd_Cuestionario.Checked = False
+        Rd_Fotografias.Checked = True
+        seleccion()
+    End Sub
+
+    Private Sub ImBtn_Cuestionario_Click(sender As Object, e As ImageClickEventArgs) Handles ImBtn_Cuestionario.Click
+        Rd_Fotografias.Checked = False
+        Rd_Cuestionario.Checked = True
+        seleccion()
+    End Sub
+
+    Protected Sub Btn_subirFotografia_Click(sender As Object, e As EventArgs) Handles Btn_subirFotografia.Click
+        ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "fn_cargar", "fn_cargar();", True)
 
     End Sub
 End Class
